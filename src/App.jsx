@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
+import BookDetail from './pages/BookDetail.jsx';
 import './App.css';
 
 function App() {
@@ -7,7 +9,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* başka sayfa olursa burada eklenir */}
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/book/:bookId" element={<BookDetail />} />
       </Routes>
     </Router>
   );

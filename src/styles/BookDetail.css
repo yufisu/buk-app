@@ -1,0 +1,198 @@
+.book-detail-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  min-height: calc(100vh - 160px); /* Header ve Navigation için alan bırak */
+}
+
+.book-detail-header {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.book-cover {
+  flex-shrink: 0;
+}
+
+.book-cover img {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.book-info {
+  flex-grow: 1;
+}
+
+.book-info h1 {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #1a1a1a;
+}
+
+.book-info h2 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  color: #666;
+}
+
+.book-metadata {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.book-genres {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.genre-tag {
+  background-color: #f0f0f0;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.genre-tag:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.book-actions {
+  margin-top: 2rem;
+}
+
+.reading-status-select {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reading-status-select:hover {
+  border-color: #00b020;
+  transform: translateY(-2px);
+}
+
+.user-rating {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  color: #666;
+  padding: 0.5rem 0;
+}
+
+.book-detail-content {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.book-description {
+  max-width: 800px;
+  margin-bottom: 3rem;
+}
+
+.book-description h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.book-description p {
+  line-height: 1.8;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.friends-activity {
+  margin-top: 3rem;
+}
+
+.friends-activity h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+
+.friends-reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.friend-review {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: rgba(248, 248, 248, 0.9);
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+}
+
+.friend-review:hover {
+  transform: translateY(-2px);
+}
+
+.friend-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.friend-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.friend-name {
+  font-weight: 500;
+  color: #1a1a1a;
+  font-size: 1.1rem;
+}
+
+.friend-rating {
+  margin-left: auto;
+  font-weight: 600;
+  color: #00b020;
+  font-size: 1.2rem;
+}
+
+.review-date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.book-not-found {
+  text-align: center;
+  padding: 4rem;
+  font-size: 1.5rem;
+  color: #666;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin: 2rem;
+} 

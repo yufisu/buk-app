@@ -1,11 +1,20 @@
+import { useNavigate } from 'react-router-dom';
 import '../styles/BookCard.css';
 import UserInfo from './UserInfo.jsx';
 
 function BookCard({ book, showUserInfo = false }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/book/${book.id}`);
+  };
+
   return (
-    <div className="book-card">
+    <div className="book-card" onClick={handleClick}>
       <div className="book-cover">
-        <img src={book.coverUrl} alt={book.title} />
+        <div className="book-image-container">
+          <img src={book.coverUrl} alt={book.title} />
+        </div>
       </div>
       
       {showUserInfo && (
