@@ -1,0 +1,15 @@
+/* StarRating.css */
+.star-rating {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: -1px;
+  }
+  .star.full {
+  color: var(--accent-color);
+  }
+  .star.half {
+  background: linear-gradient(to right, var(--accent-color) 50%, rgba(255, 255, 255, 0.4) 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }

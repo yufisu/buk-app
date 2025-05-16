@@ -1,0 +1,40 @@
+/* BottomNavigation.css */
+.bottom-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--nav-color);
+  display: flex;
+  height: 60px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  }
+  .nav-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+  }
+  .nav-item.active {
+  color: var(--accent-color);
+  }
+  .add-button {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-color);
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--accent-color);
+    color: var(--accent-color);
+    z-index: 101;
+  }
