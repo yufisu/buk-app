@@ -1,29 +1,44 @@
 /* BookSection.css */
 .book-section {
-  margin-bottom: var(--section-spacing);
-  }
-  .section-header {
+  margin-bottom: 40px;
+}
+
+.section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
-  }
-  .section-header h2 {
-  font-size: 18px;
+  margin-bottom: 16px;
+  padding: 0 4px;
+}
+
+.section-header h2 {
+  font-size: 24px;
   font-weight: 600;
-  }
-  .see-more {
-  color: var(--accent-color);
+  color: #fff;
+}
+
+.see-more {
+  color: #60a5fa;
   font-size: 14px;
-  }
-  .books-container {
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.see-more:hover {
+  color: #93c5fd;
+}
+
+.books-container {
   display: flex;
   overflow-x: auto;
-  gap: 10px;
-  padding-bottom: 12px;
-  -webkit-overflow-scrolling: touch; /* iOS için daha iyi scroll /
-  scrollbar-width: none; / Firefox için scrollbar gizleme */
-  }
-  .books-container::-webkit-scrollbar {
-  display: none; /* Chrome/Safari için scrollbar gizleme */
-  }
+  gap: 16px;
+  padding: 4px;
+  padding-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin: 0 -4px; /* Compensate for the padding in section-header */
+}
+
+.books-container::-webkit-scrollbar {
+  display: none;
+}

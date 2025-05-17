@@ -1,16 +1,20 @@
 import '../styles/UserInfo.css';
 import StarRating from './StarRating.jsx';
+import anonAvatar from '../assets/anon.jpg';
 
 function UserInfo({ user, rating }) {
   return (
     <div className="user-info">
-      <div className="user-avatar">
-        <img src={user.avatarUrl} alt={user.username} />
-      </div>
-      <div className="user-details">
+      <div className="user-top">
+        <div className="user-avatar">
+          <img 
+            src={user.avatarUrl || anonAvatar} 
+            alt={user.username}
+          />
+        </div>
         <span className="username">{user.username}</span>
-        <StarRating rating={rating} />
       </div>
+      <StarRating rating={rating} style={{ fontSize: '1rem' }} />
     </div>
   );
 }

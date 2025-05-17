@@ -35,6 +35,13 @@
   margin-bottom: 8px;
 }
 
+.profile-bio {
+  font-size: 16px;
+  color: rgba(165, 165, 165, 0.9);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
 .member-since {
   color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
@@ -53,6 +60,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: none;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: inherit;
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.stat-item.active {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
 }
 
 .stat-number {
@@ -95,4 +118,23 @@
   text-align: center;
   color: rgba(255, 255, 255, 0.5);
   padding: 40px 0;
+}
+
+.profile-not-found {
+  text-align: center;
+  padding: 4rem;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  margin: 2rem;
+}
+
+.no-content {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
 } 

@@ -1,17 +1,78 @@
+import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import Navigation from '../components/Navigation.jsx';
 import BookSection from '../components/BookSection.jsx';
-import profileImage from '../assets/me.JPG';
-import { getRecentBooks, userInteractions } from '../data/sampleData.jsx';
+import { books, users, getCurrentUser } from '../data/sampleData';
+import anonAvatar from '../assets/anon.jpg';
+import meAvatar from '../assets/me.JPG';
 import '../styles/ProfilePage.css';
 
 function ProfilePage() {
-  // Kullanıcı istatistiklerini hesapla
-  const stats = {
-    books: userInteractions.readings.length,
-    reviews: userInteractions.readings.filter(r => r.status === 'read').length,
-    lists: 2 // Şimdilik sabit
+  const { userId } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const currentUser = getCurrentUser();
+  const activeSection = searchParams.get('section') || 'books';
+  
+  // Get the user data
+  const user = userId 
+    ? users[userId]
+    : currentUser;
+
+  if (userId && !user) {
+    return (
+      <div className="profile-page">
+        <Header />
+        <Navigation />
+        <div className="profile-not-found">User not found.</div>
+      </div>
+    );
+  }
+
+  // Get books based on active section
+  const getFilteredBooks = () => {
+    return Object.entries(user.books)
+      .filter(([_, data]) => {
+        if (activeSection === 'books') return data.status === 'read' || data.status === 'both';
+        if (activeSection === 'want-to-read') return data.status === 'want-to-read' || data.status === 'both';
+        if (activeSection === 'reviews') return data.rating;
+        return false;
+      })
+      .map(([bookId, data]) => ({
+        ...books[bookId],
+        ...data
+      }))
+      .sort((a, b) => new Date(b.dateRead || b.dateAdded) - new Date(a.dateRead || a.dateAdded));
   };
+
+  const stats = {
+    books: Object.values(user.books).filter(book => book.status === 'read' || book.status === 'both').length,
+    reviews: Object.values(user.books).filter(book => book.rating).length,
+    'want-to-read': Object.values(user.books).filter(book => book.status === 'want-to-read' || book.status === 'both').length
+  };
+
+  const handleSectionChange = (section) => {
+    if (section === 'reviews') {
+      navigate(`/profile/${userId || 'me'}/reviews`);
+    } else {
+      setSearchParams({ section });
+    }
+  };
+
+  const getSectionTitle = () => {
+    switch (activeSection) {
+      case 'books':
+        return 'Read Books';
+      case 'want-to-read':
+        return 'Want to Read';
+      case 'reviews':
+        return 'Reviews';
+      default:
+        return 'Books';
+    }
+  };
+
+  const filteredBooks = getFilteredBooks();
 
   return (
     <div className="profile-page">
@@ -21,37 +82,53 @@ function ProfilePage() {
       <main className="main-content">
         <div className="profile-header">
           <div className="profile-avatar">
-            <img src={profileImage} alt="Profile" />
+            <img src={user.avatarUrl || anonAvatar} alt={`${user.username}'s profile`} />
           </div>
           <div className="profile-info">
-            <h1>yufisuke</h1>
-            <p className="member-since">Member since 2024</p>
+            <h1>{user.username}</h1>
+            <p className="profile-bio">{user.bio || 'No bio available'}</p>
+            <p className="member-since">Member since {user.memberSince || '2024'}</p>
           </div>
         </div>
 
         <div className="profile-stats">
-          <div className="stat-item">
+          <button 
+            className={`stat-item ${activeSection === 'books' ? 'active' : ''}`}
+            onClick={() => handleSectionChange('books')}
+          >
             <span className="stat-number">{stats.books}</span>
             <span className="stat-label">Books</span>
-          </div>
-          <div className="stat-item">
+          </button>
+          <button 
+            className={`stat-item ${activeSection === 'reviews' ? 'active' : ''}`}
+            onClick={() => handleSectionChange('reviews')}
+          >
             <span className="stat-number">{stats.reviews}</span>
             <span className="stat-label">Reviews</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-number">{stats.lists}</span>
-            <span className="stat-label">Lists</span>
-          </div>
+          </button>
+          <button 
+            className={`stat-item ${activeSection === 'want-to-read' ? 'active' : ''}`}
+            onClick={() => handleSectionChange('want-to-read')}
+          >
+            <span className="stat-number">{stats['want-to-read']}</span>
+            <span className="stat-label">Want to Read</span>
+          </button>
         </div>
 
         <div className="profile-content">
-          <h2>Recent Activity</h2>
+          <h2>{getSectionTitle()}</h2>
           <div className="activity-feed">
-            <BookSection 
-              title="" 
-              books={getRecentBooks()}
-              showUserInfo={false}
-            />
+            {filteredBooks.length > 0 ? (
+              <BookSection 
+                title="" 
+                books={filteredBooks}
+                showUserInfo={activeSection === 'reviews'}
+              />
+            ) : (
+              <div className="no-content">
+                No {getSectionTitle().toLowerCase()} yet
+              </div>
+            )}
           </div>
         </div>
       </main>

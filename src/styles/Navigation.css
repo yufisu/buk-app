@@ -11,39 +11,82 @@
   display: flex;
   list-style: none;
   width: 100%;
-  max-width: 1200px;
+  max-width: 850px;
   margin: 0 auto;
   padding: 0 20px;
   align-items: center;
-  justify-content: center; /* Liste öğelerini ortala */
   position: relative;
 }
 
 .main-navigation li {
-  padding: 12px 20px;
+  padding: 0;
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.7);
-  cursor: pointer;
   text-transform: uppercase;
   font-weight: 500;
   letter-spacing: 0.5px;
+}
+
+/* Logo styles */
+.logo-text {
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 10;
+  cursor: pointer;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.logo-text:hover {
+  color: #fff;
+}
+
+/* Center menu items */
+.menu-items {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding-left: 60px; /* Adjust this value to center the menu items */
+}
+
+.nav-link {
+  display: block;
+  padding: 12px 20px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
   transition: color 0.2s;
+  text-transform: uppercase;
 }
 
-.main-navigation li:hover {
+.nav-link span {
+  text-transform: uppercase;
+}
+
+/* Profile link specific styles */
+.nav-link span.profile-name {
+  text-transform: none;
+}
+
+.nav-link:hover {
   color: #fff;
 }
 
-.main-navigation li.active {
+.main-navigation li.active .nav-link {
   color: #fff;
-  border-bottom: 2px solid #00c030; /* Letterboxd'un yeşil rengi */
+  border-bottom: 2px solid #00c030;
 }
 
-.main-navigation button {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+/* Right-aligned items */
+.right-items {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+/* Log button styles and transition */
+.right-items button {
   background-color: #00c030;
   color: white;
   padding: 8px 15px;
@@ -52,42 +95,18 @@
   border: none;
   cursor: pointer;
   font-size: 14px;
+  transition: all 0.3s ease;
 }
 
-.main-navigation button:hover {
+.right-items button:hover {
   background-color: #00a628;
-}
-.logo-text {
-  position: absolute;
-  left: 15%;
-  top: 50%;
-  transform: translateY(-50%);
-  color: white;
-  font-size: 24px;
-  font-weight: 600;
-  text-decoration: none;
-  z-index: 10;
-  cursor: pointer;
-  padding: 10px;
-}
-
-.logo-text:hover {
-  color: #fff;
 }
 
 /* Search styles */
-.search-container {
-  position: absolute !important;
-  right: 90px;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 0;
-  margin: 0;
-}
-
 .search-form {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .search-button {
@@ -98,18 +117,32 @@
   border: none;
   cursor: pointer;
   transition: color 0.2s !important;
+  position: relative;
+  z-index: 2;
 }
 
 .search-button:hover {
   color: white !important;
-  background-color: transparent !important;
+}
+
+.search-button.is-open {
+  color: white !important;
+}
+
+.search-button svg {
+  transition: transform 0.3s ease;
+}
+
+.search-button.is-open svg {
+  transform: rotate(180deg);
 }
 
 .search-input {
   position: absolute;
-  right: 100%;
+  left: 40px;
   width: 0;
-  padding: 6px 12px;
+  height: 32px;
+  padding: 0 12px;
   background-color: #2c3440;
   border: none;
   border-radius: 20px;
@@ -117,12 +150,14 @@
   font-size: 14px;
   transition: all 0.3s ease;
   opacity: 0;
+  pointer-events: none;
 }
 
 .search-form.open .search-input {
   width: 200px;
   opacity: 1;
-  margin-right: 10px;
+  pointer-events: auto;
+  margin-left: 10px;
 }
 
 .search-input:focus {
@@ -132,6 +167,19 @@
 
 .search-input::placeholder {
   color: rgba(255, 255, 255, 0.5);
+}
+
+/* Log button visibility */
+.right-items > li:last-child {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.right-items:has(.search-form.open) > li:last-child {
+  opacity: 0;
+  transform: translateX(20px);
+  pointer-events: none;
 }
 
 .profile-link {
@@ -146,9 +194,4 @@
 
 .profile-link:hover {
   color: #fff;
-}
-
-.nav-link {
-  color: inherit;
-  text-decoration: none;
 }

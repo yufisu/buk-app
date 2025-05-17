@@ -6,23 +6,29 @@
 }
 
 .book-detail-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   gap: 3rem;
   margin-bottom: 3rem;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .book-cover {
+  width: 300px;
+  height: 450px;
   flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #14181c;
 }
 
 .book-cover img {
-  width: 300px;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -34,20 +40,20 @@
 .book-info h1 {
   font-size: 2.5rem;
   margin: 0 0 0.5rem 0;
-  color: #1a1a1a;
+  color: #fff;
 }
 
 .book-info h2 {
   font-size: 1.5rem;
   margin: 0 0 1rem 0;
-  color: #666;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .book-metadata {
   display: flex;
   gap: 0.75rem;
   align-items: center;
-  color: #666;
+  color: rgba(255, 255, 255, 0.6);
   margin-bottom: 1.5rem;
   font-size: 1.1rem;
 }
@@ -56,55 +62,139 @@
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
 }
 
 .genre-tag {
-  background-color: #f0f0f0;
+  background-color: rgba(255, 255, 255, 0.1);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
-  color: #666;
+  color: rgba(255, 255, 255, 0.8);
   transition: all 0.2s ease;
 }
 
 .genre-tag:hover {
-  background-color: #e0e0e0;
-  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
-.book-actions {
-  margin-top: 2rem;
+/* Action Card Styles */
+.book-actions-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.reading-status-select {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border: 2px solid #ddd;
+.actions-top {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rating-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.rating-section .star-rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5 rem;
+  color: #00c030;
+}
+
+.rating-section .star-rating svg {
+  margin: 0 0.25rem;
+}
+
+.rating-value {
+  color: #00c030;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.primary-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.action-button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
   border-radius: 8px;
-  background-color: white;
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.reading-status-select:hover {
-  border-color: #00b020;
+.action-button:hover {
+  background: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
 }
 
-.user-rating {
-  margin-top: 1rem;
-  font-size: 1.125rem;
-  color: #666;
-  padding: 0.5rem 0;
+.action-button.active {
+  background: #00c030;
+  color: white;
 }
 
+.action-button span {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.actions-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.secondary-action {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.secondary-action:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.secondary-action span {
+  font-size: 0.9rem;
+}
+
+/* Content Styles */
 .book-detail-content {
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .book-description {
@@ -115,12 +205,12 @@
 .book-description h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #1a1a1a;
+  color: #fff;
 }
 
 .book-description p {
   line-height: 1.8;
-  color: #333;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.1rem;
 }
 
@@ -131,7 +221,7 @@
 .friends-activity h3 {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  color: #1a1a1a;
+  color: #fff;
 }
 
 .friends-reviews {
@@ -143,15 +233,17 @@
 .friend-review {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  background-color: rgba(248, 248, 248, 0.9);
-  border-radius: 12px;
-  transition: transform 0.2s ease;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
 }
 
 .friend-review:hover {
+  background-color: rgba(255, 255, 255, 0.065);
   transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .friend-info {
@@ -169,30 +261,29 @@
 
 .friend-name {
   font-weight: 500;
-  color: #1a1a1a;
+  color: #fff;
   font-size: 1.1rem;
 }
 
 .friend-rating {
   margin-left: auto;
-  font-weight: 600;
-  color: #00b020;
+  color: #00c030;
   font-size: 1.2rem;
 }
 
 .review-date {
-  color: #666;
+  color: rgba(255, 255, 255, 0.6);
   font-size: 0.9rem;
+  min-width: 100px;
+  text-align: right;
 }
 
 .book-not-found {
   text-align: center;
   padding: 4rem;
   font-size: 1.5rem;
-  color: #666;
-  background: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   margin: 2rem;
 } 

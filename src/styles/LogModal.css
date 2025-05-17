@@ -1,0 +1,124 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+  padding-top: 100px;
+  backdrop-filter: blur(4px);
+}
+
+.log-modal {
+  background-color: #1a1d20;
+  border-radius: 12px;
+  width: 600px;
+  max-width: 90%;
+  position: relative;
+  animation: modalFadeIn 0.3s ease-out;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-content-container {
+  width: 100%;
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 1.5rem;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  outline: none;
+}
+
+.search-container input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Close button styles */
+.close-button {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  background-color: #1a1d20;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  z-index: 10;
+  padding: 0;
+}
+
+.close-button:hover {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+/* Override SearchResults styles for modal context */
+.log-modal .search-results {
+  position: static;
+  width: 100%;
+  max-height: 400px;
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-y: auto;
+}
+
+.log-modal .search-result-item {
+  padding: 1rem 1.5rem;
+}
+
+/* Scrollbar styles */
+.log-modal .search-results::-webkit-scrollbar {
+  width: 8px;
+}
+
+.log-modal .search-results::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.log-modal .search-results::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.log-modal .search-results::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.modal-overlay * {
+  pointer-events: auto;
+}
+
+.log-modal input {
+  cursor: text;
+} 
