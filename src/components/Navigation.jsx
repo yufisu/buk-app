@@ -30,7 +30,7 @@ function Navigation() {
 
   return (
     <>
-      <nav className="main-navigation">
+      <nav className="main-navigation bg-[#1b2025] w-full py-[10px] relative z-[1];">
         <ul>
           <li>
             <Link to="/" className="logo-text">BUK</Link>

@@ -1,4 +1,5 @@
 /* Genel stillemeler */
+@import "tailwindcss";
 :root {
 --bg-color: #14181c;
 --text-color: #ffffff;
